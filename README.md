@@ -47,8 +47,7 @@ Simply Chatbot is an interactive, voice-enabled chatbot that provides a seamless
 
 The chatbot utilizes a simple backend API, which processes the user's input and generates responses. The bot replies with either a text message or an audio file, depending on the nature of the request.
 
-- **Text Responses**: The chatbot provides static or dynamic text responses based on predefined scripts.
-- **Audio Responses**: If available, the bot can send a link to an audio file, which is played automatically.
+- **Text Responses**: The chatbot provides static or dynamic text responses .
 - **Speech Recognition**: The chatbot supports speech-to-text capabilities using the Web Speech API for voice inputs.
 
 ## Contact
