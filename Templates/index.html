@@ -3,65 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech-to-Speech Chatbot</title>
+    <title>Dynamic Voice Chatbot</title>
     <link rel="stylesheet" href="/static/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 </head>
 <body>
-    <div class="chat-container">
-        <h1>Speech-to-Speech Chatbot</h1>
-        <div id="chatbox">
-            <div id="conversation"></div>
+    <div class="container">
+        <!-- Greeting Section -->
+        <div class="greeting" id="greeting"><b>Welcome to Simply Chat!</b></div>
+
+        <!-- Name Input Section -->
+        <div class="name-entry" id="nameEntry">
+            <input type="text" id="userName" placeholder="Enter your name" />
+            <button onclick="submitName()">Submit</button>
         </div>
-        <div class="controls">
-            <select id="model">
-                <option value="gemini-pro" selected>Gemini Pro</option>
-                <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
-                <option value="gemini-1.0-pro">Gemini 1.0 Pro</option>
-            </select>
-            <button id="record" onclick="startVoice()">🎤 Start Speaking</button>
+
+        <!-- Chat Interface -->
+        <div class="chat-interface hidden" id="chatInterface">
+            <div class="chat-area">
+                <div id="chatBox"></div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="userInput" placeholder="Type here..." />
+                <button onclick="sendMessage()">Send</button>
+                <button onclick="startVoice()">🎤</button>
+                <button id="stopButton" onclick="stopAudio()" style="background-color: red; color: white; display: none;">■</button>
+            </div>
+            
         </div>
-        <audio id="responseAudio" controls hidden></audio>
     </div>
 
-    <script>
-        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.lang = 'en-US';
-
-        function startVoice() {
-            recognition.start();
-        }
-
-        recognition.onresult = function (event) {
-            const userMessage = event.results[0][0].transcript;
-            const selectedModel = document.getElementById("model").value;
-            addMessage("You", userMessage);
-
-            axios.post('/chat', { message: userMessage, model: selectedModel })
-                .then(res => {
-                    const chatbotReply = res.data.reply;
-                    addMessage("Bot", chatbotReply);
-
-                    // Check if audio data is returned and update audio element
-                     const audio = document.getElementById('responseAudio');
-                    const audioUrl = res.data.audio_url;
-
-                    // Reset the audio element
-                    audio.src = ""; // Clear the previous source
-                    audio.src = audioUrl; // Set the new audio URL
-                    audio.hidden = false; // Make the audio player visible
-                    audio.play(); // Play the audio
-                });
-        };
-
-        function addMessage(sender, message) {
-            const conversation = document.getElementById('conversation');
-            const newMessage = document.createElement('div');
-            newMessage.className = sender.toLowerCase() + "-message";
-            newMessage.textContent = `${sender}: ${message}`;
-            conversation.appendChild(newMessage);
-            conversation.scrollTop = conversation.scrollHeight;
-        }
-    </script>
+    <script src="/static/script.js"></script>
 </body>
 </html>

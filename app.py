@@ -1,21 +1,21 @@
+# Flask Application Code
+
 from flask import Flask, request, jsonify, render_template
 import os
-import time  # For generating unique filenames
+import time
 import google.generativeai as genai
 from elevenlabs import ElevenLabs
 
 app = Flask(__name__)
 
-# Configure the Google Generative AI SDK
+# Leave space for API keys
 GOOGLE_API_KEY = "AIzaSyDOFyCQCevseNgTzgKCwQgbKr6ufMnj4nY"
-genai.configure(api_key=GOOGLE_API_KEY)
-
-# Configure Eleven Labs API
 ELEVEN_API_KEY = "sk_11a437000b50f2c25fc7e1baff7ccf40529f3de7b7356844"
+
+genai.configure(api_key=GOOGLE_API_KEY)
 elevenlabs_client = ElevenLabs(api_key=ELEVEN_API_KEY)
 
-# Ensure the static folder exists
-os.makedirs("static", exist_ok=True)
+os.makedirs("static/recordings", exist_ok=True)
 
 @app.route("/")
 def index():
@@ -24,34 +24,30 @@ def index():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.json
-    user_input = data.get("message")
-    selected_model = data.get("model", "gemini-2.0-flash-exp")  # Default model
+    user_input = data.get("message", "").strip()
+
+    # Validate input
+    if not user_input:
+        return jsonify({"reply": "I'm sorry, I didn't catch that. Please try again.", "audio_url": None})
+
+    selected_model = data.get("model", "gemini-2.0-flash-exp")
 
     try:
-        # Load the selected model
         model = genai.GenerativeModel(selected_model)
         response = model.generate_content(user_input)
-        chatbot_reply = response.text  # Assuming the response contains the 'text' field
+        chatbot_reply = response.text or "I'm sorry, I couldn't process that."
     except Exception as e:
         chatbot_reply = f"Error: {e}"
 
     try:
-        # Generate speech using Eleven Labs
         audio_stream = elevenlabs_client.generate(
-            text = f" .. {chatbot_reply}",
-            voice="Bill",  # You can customize the voice
-            model="eleven_multilingual_v2",
-            optimize_streaming_latency= 2 ,
-            
+            text=chatbot_reply,
+            voice="Xb7hH8MSUJpSbSDYk0k2",
+            model="eleven_multilingual_v2"
         )
-
-        # Concatenate the bytes from the generator
         audio_bytes = b"".join(audio_stream)
-
-        # Create a unique filename using a timestamp to avoid caching issues
         unique_filename = f"static/recordings/response_{int(time.time())}.mp3"
 
-        # Save the audio to the static folder
         with open(unique_filename, "wb") as f:
             f.write(audio_bytes)
 
@@ -60,6 +56,35 @@ def chat():
         unique_filename = None
 
     return jsonify({"reply": chatbot_reply, "audio_url": unique_filename})
+
+
+@app.route("/greet", methods=["POST"])
+def greet():
+    data = request.json
+    user_name = data.get("name")
+
+    # Generate personalized greeting
+    chatbot_reply = f"<break time='500ms'/>Hi.<break time='500ms'/> {user_name}</speak>"
+
+
+    # Generate audio using ElevenLabs
+    try:
+        audio_stream = elevenlabs_client.generate(
+            text=chatbot_reply,
+            voice="Xb7hH8MSUJpSbSDYk0k2",
+            model="eleven_multilingual_v2"
+        )
+        audio_bytes = b"".join(audio_stream)
+        unique_filename = f"static/recordings/greeting_{int(time.time())}.mp3"
+
+        with open(unique_filename, "wb") as f:
+            f.write(audio_bytes)
+    except Exception as e:
+        chatbot_reply += f" [Note: Eleven Labs Error: {e}]"
+        unique_filename = None
+
+    return jsonify({"reply": chatbot_reply, "audio_url": unique_filename})
+
 
 if __name__ == "__main__":
     app.run(debug=True)
