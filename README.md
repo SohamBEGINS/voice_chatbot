@@ -14,10 +14,10 @@ Simply Chatbot is an interactive, voice-enabled chatbot that provides a seamless
 - **Gemini**: For the AI model that powers the chatbot's responses.
 - **ElevenLabs**: To generate more human-like tones in the chatbot's voice.
 
-<h2>Installation</h2>
+### Installation :
 <ol>
     <li>Clone the repository:
-        <pre><code>git clone https://github.com/SohamBEGINS/voice_chatbot<code></pre>
+        <pre><code>git clone https://github.com/SohamBEGINS/voice_chatbot</code></pre>
     </li>
     <li>Navigate to the project directory:
         <pre><code>cd voice-chatbot</code></pre>
@@ -28,14 +28,10 @@ Simply Chatbot is an interactive, voice-enabled chatbot that provides a seamless
     <li>Run the Flask application:
         <pre><code>python app.py</code></pre>
     </li>
-    
-   <li>Open your browser and go to <code>http://127.0.0.1:5000</code>.</li>
+    <li>Open your browser and go to <code>http://127.0.0.1:5000</code>.</li>
 </ol>
 
 ### Prerequisites
 
 - Python 3.x
 - pip (Python package installer)
-
-
-
