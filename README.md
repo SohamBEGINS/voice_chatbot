@@ -27,4 +27,8 @@ To run Simply Chatbot locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/SohamBEGINS/tech4tmrw_team_Salvators
+   git clone https://github.com/SohamBEGINS/voice_chatbot
+2.Navigate to the project directory:
+  ```bash
+   cd voice-chatbot
+
