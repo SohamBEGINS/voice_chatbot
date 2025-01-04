@@ -39,7 +39,7 @@ def chat():
         # Generate speech using Eleven Labs
         audio_stream = elevenlabs_client.generate(
             text = f" .. {chatbot_reply}",
-            voice="Rachel",  # You can customize the voice
+            voice="Bill",  # You can customize the voice
             model="eleven_multilingual_v2",
             optimize_streaming_latency= 2 ,
             
@@ -49,7 +49,7 @@ def chat():
         audio_bytes = b"".join(audio_stream)
 
         # Create a unique filename using a timestamp to avoid caching issues
-        unique_filename = f"static/response_{int(time.time())}.mp3"
+        unique_filename = f"static/recordings/response_{int(time.time())}.mp3"
 
         # Save the audio to the static folder
         with open(unique_filename, "wb") as f:
