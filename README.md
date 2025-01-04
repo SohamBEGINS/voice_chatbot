@@ -1,4 +1,4 @@
-# Simply Chatbot
+# Simply Chat
 
 ![Simply Chatbot Screenshot](static/images/screenshot.png)
 
