@@ -14,7 +14,7 @@ Simply Chatbot is an interactive, voice-enabled chatbot that provides a seamless
 - **Gemini**: For the AI model that powers the chatbot's responses.
 - **ElevenLabs**: To generate more human-like tones in the chatbot's voice.
 
-### Installation :
+## Installation :
 <ol>
     <li>Clone the repository:
         <pre><code>git clone https://github.com/SohamBEGINS/voice_chatbot</code></pre>
@@ -35,3 +35,22 @@ Simply Chatbot is an interactive, voice-enabled chatbot that provides a seamless
 
 - Python 3.x
 - pip (Python package installer)
+
+## Usage
+
+- **Name Input**: Upon opening the chatbot, the user is prompted to input their name.
+- **Dynamic Greeting**: Once the name is submitted, the chatbot greets the user with a personalized message.
+- **Messaging**: Users can type a message or use the microphone button to speak to the chatbot.
+- **Bot Response**: The chatbot replies with either text or audio. Audio will automatically play, and users can stop it with a "Stop" button.
+
+## How it Works
+
+The chatbot utilizes a simple backend API, which processes the user's input and generates responses. The bot replies with either a text message or an audio file, depending on the nature of the request.
+
+- **Text Responses**: The chatbot provides static or dynamic text responses based on predefined scripts.
+- **Audio Responses**: If available, the bot can send a link to an audio file, which is played automatically.
+- **Speech Recognition**: The chatbot supports speech-to-text capabilities using the Web Speech API for voice inputs.
+
+## Contact
+
+If you have any questions, feel free to reach out to me at gangulysoham67@gmail.com.
