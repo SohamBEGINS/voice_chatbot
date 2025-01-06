@@ -2,7 +2,7 @@
 
 ![Simply Chatbot Screenshot](static/images/screenshot.png)
 
-Simply Chatbot is an interactive, voice-enabled chatbot that provides a seamless conversation experience using both text and speech inputs. The chatbot allows users to communicate with it by typing messages or using voice commands. It also offers audio responses, enhancing the user experience with an engaging, dynamic interface.
+Simply Chat is an interactive, voice-enabled chatbot that provides a seamless conversation experience using both text and speech inputs. The chatbot allows users to communicate with it by typing messages or using voice commands. It also offers audio responses, enhancing the user experience with an engaging, dynamic interface.
 
 ## Technologies Used
 
