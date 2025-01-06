@@ -54,7 +54,7 @@ The chatbot utilizes a simple backend API, which processes the user's input and 
 
 ## Conclusion
 
-I would like to express a special thanks to my mentor Mr Sameer Sagar whose guidance helped me in the completion of my project .
+I would like to express a special thanks to my mentor Mr Sameer Mishra whose guidance helped me in the completion of my project .
 
 ## Contact
 
