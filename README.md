@@ -52,6 +52,10 @@ The chatbot utilizes a simple backend API, which processes the user's input and 
 - **Text Responses**: The chatbot provides static or dynamic text responses .
 - **Speech Recognition**: The chatbot supports speech-to-text capabilities using the Web Speech API for voice inputs.
 
+## Conclusion
+
+I would like to express a special thanks to my mentor Mr Sameer Sagar whose guidance helped me in the completion of my project .
+
 ## Contact
 
 If you have any questions, feel free to reach out to me at gangulysoham67@gmail.com.
